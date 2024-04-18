@@ -1,14 +1,12 @@
-//
-//  main.cpp
-//  ImageFilters
-//
-//  Created by TK  on 18/04/2024.
-//
-
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
+    if (argc == 1) {
+        std::cout << "Need to input the name of the file when building.\n";
+        std::cout << "Usage: " << argv[0] << " filename.png  (as an example)\n";
+        return 0;
+    }
+    
     return 0;
 }
