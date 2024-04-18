@@ -1,13 +1,3 @@
-//
-//  fileRedirection.hpp
-//  ImageFilters
-//
-//  Created by TK  on 18/04/2024.
-//
+std::string fileType(const char* filename);
 
-#ifndef fileRedirection_hpp
-#define fileRedirection_hpp
-
-#include <stdio.h>
-
-#endif /* fileRedirection_hpp */
+int redirectFileType(std::string fileType);

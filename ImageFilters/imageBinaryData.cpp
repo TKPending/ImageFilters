@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <string>
 #include "inputChecks.hpp"
 #include "errorHandling.hpp"
+#include "fileRedirection.hpp"
 
 enum FileTypes {
     JPEG = 1,
@@ -18,6 +20,30 @@ void closeImage(FILE* pFile)
     };
 }
 
+void fileTypeProcessing(const char* filename)
+{
+    std::string imageType = fileType(filename);
+    int redirectNumb = redirectFileType(imageType);
+    
+    switch (redirectNumb) {
+        case JPEG:
+            return;
+        case JPG:
+            return;
+        case PNG:
+            return;
+        case BMP:
+            return;
+        case SVG:
+            return;
+        case PDF:
+            return;
+        default:
+            ErrorHandling::invalidFileType();
+            return;
+    }
+}
+
 void openImage(const char* filename)
 {
     bool validFilename = InputChecks::checkFilename(filename);
@@ -29,7 +55,7 @@ void openImage(const char* filename)
     FILE *pFile;
     pFile = fopen(filename, "wb");
     
-    // Manipulate Images
+    fileTypeProcessing(filename);
     
     closeImage(pFile);
 }
