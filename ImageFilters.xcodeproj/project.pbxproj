@@ -84,8 +84,8 @@
 		5264A9322BD3102D0032CECC /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5264A9432BD312690032CECC /* headers */,
 				5264A9412BD310800032CECC /* imageBinaryData.cpp */,
-				5264A9402BD310760032CECC /* imageBinaryData.hpp */,
 				5264A93D2BD310720032CECC /* utils */,
 				5264A9382BD310480032CECC /* errorHandling */,
 				5264A9332BD3102D0032CECC /* main.cpp */,
@@ -96,8 +96,6 @@
 		5264A9382BD310480032CECC /* errorHandling */ = {
 			isa = PBXGroup;
 			children = (
-				5264A9392BD310480032CECC /* errorHandling.hpp */,
-				5264A93A2BD310480032CECC /* inputChecks.hpp */,
 				5264A93B2BD310480032CECC /* inputChecks.cpp */,
 				5264A93C2BD310480032CECC /* errorHandling.cpp */,
 			);
@@ -108,9 +106,19 @@
 			isa = PBXGroup;
 			children = (
 				5264A93E2BD310720032CECC /* fileRedirection.cpp */,
-				5264A93F2BD310720032CECC /* fileRedirection.hpp */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		5264A9432BD312690032CECC /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				5264A9392BD310480032CECC /* errorHandling.hpp */,
+				5264A93A2BD310480032CECC /* inputChecks.hpp */,
+				5264A93F2BD310720032CECC /* fileRedirection.hpp */,
+				5264A9402BD310760032CECC /* imageBinaryData.hpp */,
+			);
+			path = headers;
 			sourceTree = "<group>";
 		};
 		5264B6352BD19F5E00730D3D = {
