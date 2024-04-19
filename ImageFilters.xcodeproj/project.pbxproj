@@ -6,7 +6,30 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5264A9342BD3102D0032CECC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5264A9332BD3102D0032CECC /* main.cpp */; };
+		5264A9422BD310800032CECC /* imageBinaryData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5264A9412BD310800032CECC /* imageBinaryData.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		5264A9242BD30FEF0032CECC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		5264A92F2BD3102D0032CECC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		5264B63C2BD19F5E00730D3D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -19,11 +42,35 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5264A9212BD30C520032CECC /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		5264A9262BD30FEF0032CECC /* Filters */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Filters; sourceTree = BUILT_PRODUCTS_DIR; };
+		5264A9312BD3102D0032CECC /* src */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = src; sourceTree = BUILT_PRODUCTS_DIR; };
+		5264A9332BD3102D0032CECC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5264A9392BD310480032CECC /* errorHandling.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = errorHandling.hpp; sourceTree = "<group>"; };
+		5264A93A2BD310480032CECC /* inputChecks.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = inputChecks.hpp; sourceTree = "<group>"; };
+		5264A93B2BD310480032CECC /* inputChecks.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = inputChecks.cpp; sourceTree = "<group>"; };
+		5264A93C2BD310480032CECC /* errorHandling.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = errorHandling.cpp; sourceTree = "<group>"; };
+		5264A93E2BD310720032CECC /* fileRedirection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fileRedirection.cpp; sourceTree = "<group>"; };
+		5264A93F2BD310720032CECC /* fileRedirection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fileRedirection.hpp; sourceTree = "<group>"; };
+		5264A9402BD310760032CECC /* imageBinaryData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imageBinaryData.hpp; sourceTree = "<group>"; };
+		5264A9412BD310800032CECC /* imageBinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imageBinaryData.cpp; sourceTree = "<group>"; };
 		5264B63E2BD19F5E00730D3D /* ImageFilters */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImageFilters; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5264A9232BD30FEF0032CECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5264A92E2BD3102D0032CECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5264B63B2BD19F5E00730D3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -34,10 +81,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5264A9322BD3102D0032CECC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				5264A9412BD310800032CECC /* imageBinaryData.cpp */,
+				5264A9402BD310760032CECC /* imageBinaryData.hpp */,
+				5264A93D2BD310720032CECC /* utils */,
+				5264A9382BD310480032CECC /* errorHandling */,
+				5264A9332BD3102D0032CECC /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		5264A9382BD310480032CECC /* errorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				5264A9392BD310480032CECC /* errorHandling.hpp */,
+				5264A93A2BD310480032CECC /* inputChecks.hpp */,
+				5264A93B2BD310480032CECC /* inputChecks.cpp */,
+				5264A93C2BD310480032CECC /* errorHandling.cpp */,
+			);
+			path = errorHandling;
+			sourceTree = "<group>";
+		};
+		5264A93D2BD310720032CECC /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				5264A93E2BD310720032CECC /* fileRedirection.cpp */,
+				5264A93F2BD310720032CECC /* fileRedirection.hpp */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		5264B6352BD19F5E00730D3D = {
 			isa = PBXGroup;
 			children = (
-				5264A9212BD30C520032CECC /* src */,
+				5264A9322BD3102D0032CECC /* src */,
 				5264B63F2BD19F5E00730D3D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				5264B63E2BD19F5E00730D3D /* ImageFilters */,
+				5264A9262BD30FEF0032CECC /* Filters */,
+				5264A9312BD3102D0032CECC /* src */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,6 +134,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5264A9252BD30FEF0032CECC /* Filters */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5264A92A2BD30FEF0032CECC /* Build configuration list for PBXNativeTarget "Filters" */;
+			buildPhases = (
+				5264A9222BD30FEF0032CECC /* Sources */,
+				5264A9232BD30FEF0032CECC /* Frameworks */,
+				5264A9242BD30FEF0032CECC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Filters;
+			productName = Filters;
+			productReference = 5264A9262BD30FEF0032CECC /* Filters */;
+			productType = "com.apple.product-type.tool";
+		};
+		5264A9302BD3102D0032CECC /* src */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5264A9352BD3102D0032CECC /* Build configuration list for PBXNativeTarget "src" */;
+			buildPhases = (
+				5264A92D2BD3102D0032CECC /* Sources */,
+				5264A92E2BD3102D0032CECC /* Frameworks */,
+				5264A92F2BD3102D0032CECC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = src;
+			productName = src;
+			productReference = 5264A9312BD3102D0032CECC /* src */;
+			productType = "com.apple.product-type.tool";
+		};
 		5264B63D2BD19F5E00730D3D /* ImageFilters */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5264B6452BD19F5E00730D3D /* Build configuration list for PBXNativeTarget "ImageFilters" */;
@@ -79,6 +194,12 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
+					5264A9252BD30FEF0032CECC = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					5264A9302BD3102D0032CECC = {
+						CreatedOnToolsVersion = 15.1;
+					};
 					5264B63D2BD19F5E00730D3D = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -98,11 +219,29 @@
 			projectRoot = "";
 			targets = (
 				5264B63D2BD19F5E00730D3D /* ImageFilters */,
+				5264A9252BD30FEF0032CECC /* Filters */,
+				5264A9302BD3102D0032CECC /* src */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5264A9222BD30FEF0032CECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5264A92D2BD3102D0032CECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5264A9422BD310800032CECC /* imageBinaryData.cpp in Sources */,
+				5264A9342BD3102D0032CECC /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5264B63A2BD19F5E00730D3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,6 +252,38 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		5264A92B2BD30FEF0032CECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5264A92C2BD30FEF0032CECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5264A9362BD3102D0032CECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5264A9372BD3102D0032CECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		5264B6432BD19F5E00730D3D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -253,6 +424,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5264A92A2BD30FEF0032CECC /* Build configuration list for PBXNativeTarget "Filters" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5264A92B2BD30FEF0032CECC /* Debug */,
+				5264A92C2BD30FEF0032CECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5264A9352BD3102D0032CECC /* Build configuration list for PBXNativeTarget "src" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5264A9362BD3102D0032CECC /* Debug */,
+				5264A9372BD3102D0032CECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		5264B6392BD19F5E00730D3D /* Build configuration list for PBXProject "ImageFilters" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -260,7 +449,7 @@
 				5264B6442BD19F5E00730D3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5264B6452BD19F5E00730D3D /* Build configuration list for PBXNativeTarget "ImageFilters" */ = {
 			isa = XCConfigurationList;
@@ -269,7 +458,7 @@
 				5264B6472BD19F5E00730D3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

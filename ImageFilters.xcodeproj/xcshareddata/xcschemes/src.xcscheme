@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1510"
-   version = "1.7">
+   version = "2.2">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -12,11 +12,20 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
+            <AutocreatedTestPlanReference>
+            </AutocreatedTestPlanReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5264B63D2BD19F5E00730D3D"
-               BuildableName = "ImageFilters"
-               BlueprintName = "ImageFilters"
+               BlueprintIdentifier = "5264A9302BD3102D0032CECC"
+               BuildableName = "src"
+               BlueprintName = "src"
                ReferencedContainer = "container:ImageFilters.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +53,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5264B63D2BD19F5E00730D3D"
-            BuildableName = "ImageFilters"
-            BlueprintName = "ImageFilters"
+            BlueprintIdentifier = "5264A9302BD3102D0032CECC"
+            BuildableName = "src"
+            BlueprintName = "src"
             ReferencedContainer = "container:ImageFilters.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +70,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5264B63D2BD19F5E00730D3D"
-            BuildableName = "ImageFilters"
-            BlueprintName = "ImageFilters"
+            BlueprintIdentifier = "5264A9302BD3102D0032CECC"
+            BuildableName = "src"
+            BlueprintName = "src"
             ReferencedContainer = "container:ImageFilters.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
