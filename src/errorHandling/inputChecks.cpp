@@ -1,9 +1,8 @@
 #include <vector>
 #include <string>
+#include "inputChecks.hpp"
 
 namespace InputChecks {
-    constexpr int fileTypeAmount = 6;
-
     bool checkFilename(const char* filename)
     {
         std::vector<std::string> imageFileTypes = {".jpeg", ".jpg" , ".png", ".bmp", ".svg", ".pdf"};

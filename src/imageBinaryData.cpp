@@ -1,5 +1,7 @@
+#include <iostream>
 #include <stdio.h>
 #include <string>
+#include "imageBinaryData.hpp"
 #include "inputChecks.hpp"
 #include "errorHandling.hpp"
 #include "fileRedirection.hpp"
@@ -17,6 +19,7 @@ void closeImage(FILE* pFile)
 {
     if (pFile != NULL) {
         fclose(pFile);
+        std::cout << "\nFile Closed\n";
     };
 }
 
@@ -54,6 +57,12 @@ void openImage(const char* filename)
     
     FILE *pFile;
     pFile = fopen(filename, "wb");
+    
+    if (pFile == NULL) {
+        ErrorHandling::openingFileFailed(filename);
+    } else {
+        std::cout << "\nFile Opened!\n";
+    }
     
     fileTypeProcessing(filename);
     
