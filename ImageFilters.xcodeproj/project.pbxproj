@@ -6,14 +6,6 @@
 	objectVersion = 56;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		5264B6422BD19F5E00730D3D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5264B6412BD19F5E00730D3D /* main.cpp */; };
-		5264B64B2BD1A35700730D3D /* imageBinaryData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5264B6492BD1A35700730D3D /* imageBinaryData.cpp */; };
-		5264B6512BD1A6AC00730D3D /* errorHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5264B64F2BD1A6AC00730D3D /* errorHandling.cpp */; };
-		5264B6542BD1ADE000730D3D /* inputChecks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5264B6522BD1ADE000730D3D /* inputChecks.cpp */; };
-		5264B6592BD1B70600730D3D /* fileRedirection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5264B6572BD1B70600730D3D /* fileRedirection.cpp */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		5264B63C2BD19F5E00730D3D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -27,16 +19,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5264A9212BD30C520032CECC /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
 		5264B63E2BD19F5E00730D3D /* ImageFilters */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImageFilters; sourceTree = BUILT_PRODUCTS_DIR; };
-		5264B6412BD19F5E00730D3D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		5264B6492BD1A35700730D3D /* imageBinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imageBinaryData.cpp; sourceTree = "<group>"; };
-		5264B64A2BD1A35700730D3D /* imageBinaryData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imageBinaryData.hpp; sourceTree = "<group>"; };
-		5264B64F2BD1A6AC00730D3D /* errorHandling.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = errorHandling.cpp; sourceTree = "<group>"; };
-		5264B6502BD1A6AC00730D3D /* errorHandling.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = errorHandling.hpp; sourceTree = "<group>"; };
-		5264B6522BD1ADE000730D3D /* inputChecks.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = inputChecks.cpp; sourceTree = "<group>"; };
-		5264B6532BD1ADE000730D3D /* inputChecks.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = inputChecks.hpp; sourceTree = "<group>"; };
-		5264B6572BD1B70600730D3D /* fileRedirection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fileRedirection.cpp; sourceTree = "<group>"; };
-		5264B6582BD1B70600730D3D /* fileRedirection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fileRedirection.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +37,7 @@
 		5264B6352BD19F5E00730D3D = {
 			isa = PBXGroup;
 			children = (
-				5264B6402BD19F5E00730D3D /* ImageFilters */,
+				5264A9212BD30C520032CECC /* src */,
 				5264B63F2BD19F5E00730D3D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,46 +48,6 @@
 				5264B63E2BD19F5E00730D3D /* ImageFilters */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5264B6402BD19F5E00730D3D /* ImageFilters */ = {
-			isa = PBXGroup;
-			children = (
-				5264B6562BD1B6C400730D3D /* utils */,
-				5264B64E2BD1A69500730D3D /* errorHandling */,
-				5264B64C2BD1A36300730D3D /* filters */,
-				5264B6412BD19F5E00730D3D /* main.cpp */,
-				5264B6492BD1A35700730D3D /* imageBinaryData.cpp */,
-				5264B64A2BD1A35700730D3D /* imageBinaryData.hpp */,
-			);
-			path = ImageFilters;
-			sourceTree = "<group>";
-		};
-		5264B64C2BD1A36300730D3D /* filters */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = filters;
-			sourceTree = "<group>";
-		};
-		5264B64E2BD1A69500730D3D /* errorHandling */ = {
-			isa = PBXGroup;
-			children = (
-				5264B64F2BD1A6AC00730D3D /* errorHandling.cpp */,
-				5264B6502BD1A6AC00730D3D /* errorHandling.hpp */,
-				5264B6522BD1ADE000730D3D /* inputChecks.cpp */,
-				5264B6532BD1ADE000730D3D /* inputChecks.hpp */,
-			);
-			path = errorHandling;
-			sourceTree = "<group>";
-		};
-		5264B6562BD1B6C400730D3D /* utils */ = {
-			isa = PBXGroup;
-			children = (
-				5264B6572BD1B70600730D3D /* fileRedirection.cpp */,
-				5264B6582BD1B70600730D3D /* fileRedirection.hpp */,
-			);
-			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,11 +107,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5264B64B2BD1A35700730D3D /* imageBinaryData.cpp in Sources */,
-				5264B6542BD1ADE000730D3D /* inputChecks.cpp in Sources */,
-				5264B6512BD1A6AC00730D3D /* errorHandling.cpp in Sources */,
-				5264B6422BD19F5E00730D3D /* main.cpp in Sources */,
-				5264B6592BD1B70600730D3D /* fileRedirection.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +232,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/Users/tk/documents/personal/imagefilters/src/**";
+				LIBRARY_SEARCH_PATHS = "/Users/tk/documents/personal/imagefilters/src/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 			};
 			name = Debug;
 		};
@@ -301,7 +243,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/Users/tk/documents/personal/imagefilters/src/**";
+				LIBRARY_SEARCH_PATHS = "/Users/tk/documents/personal/imagefilters/src/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 			};
 			name = Release;
 		};
