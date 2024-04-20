@@ -2,6 +2,7 @@
 #include "InputChecks.hpp"
 #include "ErrorHandling.hpp"
 #include "FileRedirection.hpp"
+#include "ImageProcessor.hpp"
 
 enum FileTypes {
     JPEG = 1,
@@ -12,56 +13,59 @@ enum FileTypes {
     PDF = 6,
 };
 
-void closeImage(FILE* pFile)
-{
+void closeImage(FILE* pFile) {
     if (pFile != NULL) {
         fclose(pFile);
-        std::cout << "\nFile Closed\n";
+        std::cout << "\nFile Closed\n\n";
     }
 }
 
-void fileTypeProcessing(const char* filename)
-{
+bool fileTypeProcessing(const char* filename, FILE* pFile) {
     const char* imageType = fileType(filename);
     int redirectNumb = redirectFileType(imageType);
     
     switch (redirectNumb) {
         case JPEG:
-            return;
+            return false;
         case JPG:
-            return;
+            return false;
         case PNG:
-            return;
+            return false;
         case BMP:
-            return;
+            return ImageProcessor::bmpFileConverter(pFile);
         case SVG:
-            return;
+            return false;
         case PDF:
-            return;
+            return false;
         default:
             ErrorHandling::invalidFileType();
-            return;
+            return false;
     }
 }
 
-void openImage(const char* filename)
-{
+void openImage(const char* filename) {
     bool validFilename = InputChecks::checkFilename(filename);
     
     if (!validFilename) {
         ErrorHandling::invalidFileType();
+        return;
     }
     
     FILE *pFile;
-    pFile = fopen(filename, "wb");
+    pFile = fopen(filename, "rb");
     
     if (pFile == NULL) {
         ErrorHandling::openingFileFailed(filename);
     } else {
         std::cout << "\nFile Opened!\n";
+        bool processStatus = fileTypeProcessing(filename, pFile);
+        
+        if (processStatus) {
+            printf("\n\nImage has been updated!\n\n");
+        } else {
+            printf("\n\nFailed to update image!\n\n");
+        }
     }
-    
-    fileTypeProcessing(filename);
     
     closeImage(pFile);
 }
