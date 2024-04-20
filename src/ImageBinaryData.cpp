@@ -1,9 +1,7 @@
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include "inputChecks.hpp"
-#include "errorHandling.hpp"
-#include "fileRedirection.hpp"
+#include "MyLibrary.hpp"
+#include "InputChecks.hpp"
+#include "ErrorHandling.hpp"
+#include "FileRedirection.hpp"
 
 enum FileTypes {
     JPEG = 1,
@@ -19,12 +17,12 @@ void closeImage(FILE* pFile)
     if (pFile != NULL) {
         fclose(pFile);
         std::cout << "\nFile Closed\n";
-    };
+    }
 }
 
 void fileTypeProcessing(const char* filename)
 {
-    std::string imageType = fileType(filename);
+    const char* imageType = fileType(filename);
     int redirectNumb = redirectFileType(imageType);
     
     switch (redirectNumb) {
