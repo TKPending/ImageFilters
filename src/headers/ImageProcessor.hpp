@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace ImageProcessor {
-    bool bmpFileConverter(FILE* image);
+    bool bmpFileConverter(FILE* image, const char* newFilename);
 };
 
 
