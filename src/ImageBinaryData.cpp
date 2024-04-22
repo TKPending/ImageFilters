@@ -56,7 +56,7 @@ void openImage(const char* originalImage, const char* newImage) {
     } else {
         std::cout << "\nFile Opened!\n";
         
-        const char* imageType = fileType(originalImage);
+        const char* imageType = fileType(originalImage); // TODO: Check NewImage To
         if (strcmp(imageType, "") != 0) {
             int redirectionId = redirectFileType(imageType);
             
