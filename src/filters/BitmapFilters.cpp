@@ -15,11 +15,12 @@ enum BlackWhite {
 };
 
 namespace BitmapFilters {
-    static bool bmpCheck(FILE* pOriginalImage) {
-        fseek(pOriginalImage, 0, SEEK_SET);
+//    TODO: Change original image to image
+    static bool bmpCheck(FILE* pImage) {
+        fseek(pImage, 0, SEEK_SET);
         
         char signature[2];
-        size_t signatureBytes = fread(signature, sizeof(char), 2, pOriginalImage);
+        size_t signatureBytes = fread(signature, sizeof(char), 2, pImage);
         
         if (signatureBytes != 2) {
             std::cout << "\nProblem: Bytes weren't read.\n" << std::endl;
@@ -52,17 +53,19 @@ namespace BitmapFilters {
     }
 
     static bool copyHeaderInfo(FILE* pOriginalImage, FILE* pNewImage) {
+        char headerBuffer[metaDataByteBuffer];
         fseek(pOriginalImage, 0, SEEK_SET);
-        fwrite(pOriginalImage, sizeof(char), metaDataByteBuffer, pNewImage);
         
-        size_t pNewImageByteLength = ftell(pNewImage);
+        fread(headerBuffer, sizeof(char), metaDataByteBuffer, pOriginalImage);
+        fwrite(headerBuffer, sizeof(char), metaDataByteBuffer, pNewImage);
         
-        if (pNewImageByteLength == 0) {
-            std::cout << "\nFailed to copy header data\n" << std::endl;
+        std::cout << "\nChecking new image was copied...." << std::endl;
+        bool checkHeaderCopied = bmpCheck(pNewImage);
+        
+        if (!checkHeaderCopied) {
             return false;
         }
         
-        std::cout << "\nCopied header data!\n" << std::endl;
         return true;
     }
 
