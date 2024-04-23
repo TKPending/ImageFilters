@@ -17,4 +17,10 @@ namespace ErrorHandling {
         closingProgramText();
         std::exit(EXIT_SUCCESS);
     }
+
+    void creatingFileFailed(const char* filename) {
+        std::cerr << "Error: Unable to create file. - " << filename << "\n\n";
+        closingProgramText();
+        std::exit(EXIT_SUCCESS);
+    }
 }

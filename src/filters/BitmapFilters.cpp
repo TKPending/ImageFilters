@@ -1,4 +1,5 @@
 #include <iostream>
+#include "ErrorHandling.hpp"
 
 enum BmpByteBuffers {
     byteBuffer = 4,
@@ -43,6 +44,28 @@ namespace BitmapFilters {
         return size;
     }
 
+    static FILE* createNewImage(const char* newImageName) {
+        FILE* pNewImage;
+        pNewImage = fopen(newImageName, "wb");
+        
+        return pNewImage;
+    }
+
+    static bool copyHeaderInfo(FILE* pOriginalImage, FILE* pNewImage) {
+        fseek(pOriginalImage, 0, SEEK_SET);
+        fwrite(pOriginalImage, sizeof(char), metaDataByteBuffer, pNewImage);
+        
+        size_t pNewImageByteLength = ftell(pNewImage);
+        
+        if (pNewImageByteLength == 0) {
+            std::cout << "\nFailed to copy header data\n" << std::endl;
+            return false;
+        }
+        
+        std::cout << "\nCopied header data!\n" << std::endl;
+        return true;
+    }
+
     bool Grayscale(FILE* pOriginalImage, const char* newImage) {
         if (!bmpCheck(pOriginalImage)) {
             return false;
@@ -51,25 +74,21 @@ namespace BitmapFilters {
         int bmpWidth = bmpImageSize(pOriginalImage, widthByteBuffer);
         int bmpHeight = bmpImageSize(pOriginalImage, heightByteBuffer);
         
-        fseek(pOriginalImage, metaDataByteBuffer, SEEK_SET);
-        
         std::cout << "\nCreating new file " << newImage << "\n" << std::endl;
         
-        FILE* pNewImage;
-        pNewImage = fopen(newImage, "wb");
-            
-        // TODO:
-        //  Copy header information from image A to B
-        //  Grayscale the pixels
-        //  Return true - It worked & False - Didn't work
+        FILE* pNewImage = createNewImage(newImage);
+        if (pNewImage == NULL) {
+            std::cout << "\nClosing " << newImage << "\n" << std::endl;
+            fclose(pNewImage);
+            ErrorHandling::creatingFileFailed(newImage);
+        }
         
-        fwrite(pOriginalImage, sizeof(char), metaDataByteBuffer, pNewImage);
-        
-//        for (int ROWS = 0; ROWS < bmpWidth; ROWS++) {
-//            for (int HEIGHT = 0; HEIGHT < bmpHeight; HEIGHT++) {
-//                
-//            }
-//        }
+        bool headerCopied = copyHeaderInfo(pOriginalImage, pNewImage);
+        if (!headerCopied) {
+            std::cout << "\nClosing " << newImage << "\n" << std::endl;
+            fclose(pNewImage);
+            return false;
+        }
         
         fclose(pNewImage);
         std::cout << "\nNew Image Closed\n" << std::endl;

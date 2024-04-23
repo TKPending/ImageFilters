@@ -4,6 +4,7 @@
 namespace ErrorHandling {
     void invalidFileType();
     void openingFileFailed(const char* filename);
+    void creatingFileFailed(const char* filename);
 }
 
 
