@@ -44,7 +44,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "Starting Image Filter by Tony.\n" << std::endl;
     
     // Open original image
-    FILE* pOriginalImage = fopen(originalImageName, "r");
+    FILE* pOriginalImage = fopen(originalImageName, "rb");
     if (pOriginalImage == NULL) {
         std::cout << "Failed to open original image." << std::endl;
         std::cout << "Check file name. Does the original image exist? " << std::endl;
@@ -58,6 +58,7 @@ int main(int argc, const char * argv[]) {
     // User chooses filter
     int filter = pickImageFilter();
     
+    // Add filter & Check filter addded
     bool filterSuccess = false;
     switch (fileTypeProcess) {
         case BMP:
@@ -68,12 +69,14 @@ int main(int argc, const char * argv[]) {
             break;
     }
     
+    // Let user know success
     if (filterSuccess) {
-        std::cout << "\nImage has been successfully changed!" << std::endl;
+        std::cout << "\nImage has been successfully changed!\n" << std::endl;
     } else {
-        std::cout << "\nProblem with changing image" << std::endl;
+        std::cout << "\nAdding filter was unsuccesful!/n" << std::endl;
     }
     
+    std::cout << "Closing " << originalImageName << std::endl;
     std::cout << "Closing Program\n" << std::endl;
     fclose(pOriginalImage);
     return 0;
