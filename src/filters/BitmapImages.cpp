@@ -96,8 +96,6 @@ namespace BitmapImages {
             for (int col = 0; col < imageWidth; col++) {
                 grayTone = round((image[row][col].rgbtRed + image[row][col].rgbtGreen + image[row][col].rgbtBlue) / 3.0);
                 
-                std::cout << grayTone << std::endl;
-                
                 image[row][col].rgbtRed = grayTone;
                 image[row][col].rgbtGreen = grayTone;
                 image[row][col].rgbtBlue = grayTone;
