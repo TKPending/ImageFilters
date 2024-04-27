@@ -37,9 +37,6 @@ namespace BitmapImages {
         // Image set up
         int imageHeight = abs(bmInfoHeader.biHeight);
         int imageWidth = bmInfoHeader.biWidth;
-        
-        // Width must be divisible by 4
-        int padding = (4 - (imageWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
         // Store RGB Pixels as a 2D array
         RGBTRIPLE** image = new RGBTRIPLE*[imageHeight];
@@ -51,23 +48,38 @@ namespace BitmapImages {
         for (int i = 0; i < imageHeight; i++) {
             image[i] = new RGBTRIPLE[imageWidth];
         }
+        
+        // Width must be divisible by 4
+        int padding = (4 - (imageWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
         // Read image data
-        for (int col = 0; col < imageHeight; col++) {
-            fread(image[col], sizeof(RGBTRIPLE), imageWidth, pOriginalImage);
+        for (int row = 0; row < imageHeight; row++) {
+            fread(image[row], sizeof(RGBTRIPLE), imageWidth, pOriginalImage);
             fseek(pOriginalImage, padding, SEEK_CUR);
         }
 
         switch (filter) {
             case Grayscale:
                 grayscaleFilter(imageHeight, imageWidth, image);
-                std::cout << "\nAdd the Grayscale Filter\n" << std::endl;
                 break;
             default:
                 break;
         }
 
         // TODO: Write to new file
+        std::cout << "\nCreating new image\n" << std::endl;
+        fwrite(&bmFileHeader, sizeof(BITMAPFILEHEADER), 1, pNewImage);
+        fwrite(&bmInfoHeader, sizeof(BITMAPINFOHEADER), 1, pNewImage);
+        
+        // Add updated pixel data
+        for (int row = 0; row < imageHeight; row++) {
+            fwrite(image[row], sizeof(RGBTRIPLE), imageWidth, pNewImage);
+            for (int k = 0; k < padding; k++) {
+                fputc(0x00, pNewImage);
+            }
+        }
+        
+        std::cout << "New Image Created\n" << std::endl;
         
         std::cout << "Closing " << newImageName << std::endl;
         free(image);
@@ -78,18 +90,20 @@ namespace BitmapImages {
     void grayscaleFilter(int imageHeight, int imageWidth, RGBTRIPLE** image) {
         float grayTone;
         
-        std::cout << "Starting Grayscale" << std::endl;
+        std::cout << "\nStarting Grayscale Process..." << std::endl;
         
-        for (int col = 0; col < imageHeight; col++) {
-            for (int row = 0; row < imageWidth; row++) {
-                grayTone = round((image[col][row].rgbtRed + image[col][row].rgbtGreen + image[row][col].rgbtBlue) / 3.0);
+        for (int row = 0; row < imageHeight; row++) {
+            for (int col = 0; col < imageWidth; col++) {
+                grayTone = round((image[row][col].rgbtRed + image[row][col].rgbtGreen + image[row][col].rgbtBlue) / 3.0);
                 
-                image[col][row].rgbtRed = grayTone;
-                image[col][row].rgbtGreen = grayTone;
-                image[col][row].rgbtBlue = grayTone;
+                std::cout << grayTone << std::endl;
+                
+                image[row][col].rgbtRed = grayTone;
+                image[row][col].rgbtGreen = grayTone;
+                image[row][col].rgbtBlue = grayTone;
             }
         }
         
-        std::cout << "Ending Grayscale\n" << std::endl;
+        std::cout << "Finished Grayscale Process...\n" << std::endl;
     }
 }
