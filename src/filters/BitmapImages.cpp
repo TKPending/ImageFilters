@@ -7,9 +7,9 @@ enum Filters {
     Grayscale = 1,
 };
 
-void grayscaleFilter(int imageHeight, int imageWidth, RGBTRIPLE** image);
-
 namespace BitmapImages {
+    void grayscaleFilter(int imageHeight, int imageWidth, RGBTRIPLE** image);
+
     bool bitmapFilters(int filter, FILE* pOriginalImage, const char* newImageName) {
         std::cout << "\nOpening " << newImageName << std::endl;
         
@@ -37,6 +37,7 @@ namespace BitmapImages {
         // Image set up
         int imageHeight = abs(bmInfoHeader.biHeight);
         int imageWidth = bmInfoHeader.biWidth;
+        
         // Width must be divisible by 4
         int padding = (4 - (imageWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
@@ -52,14 +53,15 @@ namespace BitmapImages {
         }
 
         // Read image data
-        for (int row = 0; row < imageHeight; row++) {
-            fread(image[row], sizeof(RGBTRIPLE), imageWidth, pOriginalImage);
+        for (int col = 0; col < imageHeight; col++) {
+            fread(image[col], sizeof(RGBTRIPLE), imageWidth, pOriginalImage);
             fseek(pOriginalImage, padding, SEEK_CUR);
         }
 
         switch (filter) {
             case Grayscale:
                 grayscaleFilter(imageHeight, imageWidth, image);
+                std::cout << "\nAdd the Grayscale Filter\n" << std::endl;
                 break;
             default:
                 break;
@@ -76,14 +78,18 @@ namespace BitmapImages {
     void grayscaleFilter(int imageHeight, int imageWidth, RGBTRIPLE** image) {
         float grayTone;
         
-        for (int row = 0; row < imageHeight; row++) {
-            for (int col = 0; col < imageWidth; col++) {
-                grayTone = round((image[row][col].rgbtRed + image[row][col].rgbtGreen + image[row][col].rgbtBlue) / 3.0);
+        std::cout << "Starting Grayscale" << std::endl;
+        
+        for (int col = 0; col < imageHeight; col++) {
+            for (int row = 0; row < imageWidth; row++) {
+                grayTone = round((image[col][row].rgbtRed + image[col][row].rgbtGreen + image[row][col].rgbtBlue) / 3.0);
                 
-                image[row][col].rgbtRed = grayTone;
-                image[row][col].rgbtGreen = grayTone;
-                image[row][col].rgbtBlue = grayTone;
+                image[col][row].rgbtRed = grayTone;
+                image[col][row].rgbtGreen = grayTone;
+                image[col][row].rgbtBlue = grayTone;
             }
         }
+        
+        std::cout << "Ending Grayscale\n" << std::endl;
     }
 }
