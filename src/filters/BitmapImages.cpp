@@ -65,8 +65,7 @@ namespace BitmapImages {
             default:
                 break;
         }
-
-        // TODO: Write to new file
+        
         std::cout << "\nCreating new image\n" << std::endl;
         fwrite(&bmFileHeader, sizeof(BITMAPFILEHEADER), 1, pNewImage);
         fwrite(&bmInfoHeader, sizeof(BITMAPINFOHEADER), 1, pNewImage);
@@ -107,6 +106,8 @@ namespace BitmapImages {
 
     void blurFilter() {
         std::cout << "\nStarting Blur Process..." << std::endl;
+        
+        // TODO
     
         std::cout << "Finished Blur Process...\n" << std::endl;
     };
@@ -120,6 +121,8 @@ namespace BitmapImages {
     void cannyEdgeDetection() {
         std::cout << "\nStarting Canny Edge Detection Process..." << std::endl;
     
+        // TODO
+        
         std::cout << "Finished Canny Edge Detection Process...\n" << std::endl;
     };
 }
