@@ -104,4 +104,22 @@ namespace BitmapImages {
         
         std::cout << "Finished Grayscale Process...\n" << std::endl;
     }
+
+    void blurFilter() {
+        std::cout << "\nStarting Blur Process..." << std::endl;
+    
+        std::cout << "Finished Blur Process...\n" << std::endl;
+    };
+
+    void gaussianFilter() {
+        std::cout << "\nStarting Gaussian Filter Process..." << std::endl;
+    
+        std::cout << "Finished Gaussian Filter Process...\n" << std::endl;
+    }
+
+    void cannyEdgeDetection() {
+        std::cout << "\nStarting Canny Edge Detection Process..." << std::endl;
+    
+        std::cout << "Finished Canny Edge Detection Process...\n" << std::endl;
+    };
 }
