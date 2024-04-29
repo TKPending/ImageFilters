@@ -10,52 +10,81 @@ enum Filters {
 namespace BitmapImages {
     void grayscaleFilter(int imageHeight, int imageWidth, RGBTRIPLE** image);
 
-    bool bitmapFilters(int filter, FILE* pOriginalImage, const char* newImageName) {
-        std::cout << "\nOpening " << newImageName << std::endl;
-        
-        // Create new image
-        FILE* pNewImage = fopen(newImageName, "w");
-        if (pNewImage == NULL) {
-            std::cout << "Failed to create new image!" << std::endl;
+    bool checkBitmapFormat(BITMAPFILEHEADER bmFileHeader, BITMAPINFOHEADER bmInfoHeader) {
+        if (bmFileHeader.bfType != 0x4d42 || bmFileHeader.bfOffBits != 138 || bmInfoHeader.biSize != 124  || bmInfoHeader.biBitCount != 24 || bmInfoHeader.biCompression != 0) {
+            std::cout << "The program doesn't work on this BMP file format. Check underlying file format." << std::endl;
             return false;
         }
         
-        // BMP Header Format
+        return true;
+    }
+
+    RGBTRIPLE** createNewImage(int imageHeight, int imageWidth, int padding) {
+        RGBTRIPLE** image = new RGBTRIPLE*[imageHeight];
+        if (image == NULL) {
+            std::cout << "Failed to allocate memory for the image!" << std::endl;
+            return NULL;
+        }
+        
+        for (int i = 0; i < imageHeight; i++) {
+            image[i] = new RGBTRIPLE[imageWidth];
+        }
+        
+        return image;
+    }
+
+    void readImageData(int imageHeight, int imageWidth, int padding, FILE* pOriginalImage, RGBTRIPLE** image) {
+        for (int row = 0; row < imageHeight; row++) {
+            fread(image[row], sizeof(RGBTRIPLE), imageWidth, pOriginalImage);
+            fseek(pOriginalImage, padding, SEEK_CUR);
+        }
+    }
+
+    void updatePixels(int imageHeight, int imageWidth, int padding, FILE* pNewImage, RGBTRIPLE** image, BITMAPFILEHEADER bmFileHeader, BITMAPINFOHEADER bmInfoHeader) {
+        std::cout << "\nCreating new image\n" << std::endl;
+        fwrite(&bmFileHeader, sizeof(BITMAPFILEHEADER), 1, pNewImage);
+        fwrite(&bmInfoHeader, sizeof(BITMAPINFOHEADER), 1, pNewImage);
+        
+        for (int row = 0; row < imageHeight; row++) {
+            fwrite(image[row], sizeof(RGBTRIPLE), imageWidth, pNewImage);
+            for (int k = 0; k < padding; k++) {
+                fputc(0x00, pNewImage);
+            }
+        }
+        
+        std::cout << "New Image Created\n" << std::endl;
+    }
+
+    bool bitmapFilters(int filter, FILE* pOriginalImage, const char* newImageName) {
         BITMAPFILEHEADER bmFileHeader;
         fread(&bmFileHeader, sizeof(BITMAPFILEHEADER), 1, pOriginalImage);
         
         BITMAPINFOHEADER bmInfoHeader;
         fread(&bmInfoHeader, sizeof(BITMAPINFOHEADER), 1, pOriginalImage);
         
-        // Check Bitmap Format
-        if (bmFileHeader.bfType != 0x4d42 || bmFileHeader.bfOffBits != 138 || bmInfoHeader.biSize != 124  || bmInfoHeader.biBitCount != 24 || bmInfoHeader.biCompression != 0) {
-            std::cout << "The program doesn't work on this BMP file format. Check underlying file format." << std::endl;
-            fclose(pNewImage);
+        bool bitmapCheck = checkBitmapFormat(bmFileHeader, bmInfoHeader);
+        if (!bitmapCheck) {
             return false;
         }
         
-        // Image set up
         int imageHeight = abs(bmInfoHeader.biHeight);
         int imageWidth = bmInfoHeader.biWidth;
-
-        // Store RGB Pixels as a 2D array
-        RGBTRIPLE** image = new RGBTRIPLE*[imageHeight];
-        if (image == NULL) {
-            std::cout << "Failed to allocate memory for the image!" << std::endl;
-            fclose(pNewImage);
-            return false;
-        }
-        for (int i = 0; i < imageHeight; i++) {
-            image[i] = new RGBTRIPLE[imageWidth];
-        }
-        
-        // Width must be divisible by 4
         int padding = (4 - (imageWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
-        // Read image data
-        for (int row = 0; row < imageHeight; row++) {
-            fread(image[row], sizeof(RGBTRIPLE), imageWidth, pOriginalImage);
-            fseek(pOriginalImage, padding, SEEK_CUR);
+        // Store RGB Pixels as a 2D array
+        RGBTRIPLE** image = createNewImage(imageHeight, imageWidth, padding);
+        if (!image) {
+            return false;
+        }
+        
+        readImageData(imageHeight, imageWidth, padding, pOriginalImage, image);
+        
+        std::cout << "\nOpening " << newImageName << std::endl;
+        
+        FILE* pNewImage = fopen(newImageName, "w");
+        if (pNewImage == NULL) {
+            std::cout << "Failed to open new image!" << std::endl;
+            return false;
         }
 
         switch (filter) {
@@ -66,19 +95,7 @@ namespace BitmapImages {
                 break;
         }
         
-        std::cout << "\nCreating new image\n" << std::endl;
-        fwrite(&bmFileHeader, sizeof(BITMAPFILEHEADER), 1, pNewImage);
-        fwrite(&bmInfoHeader, sizeof(BITMAPINFOHEADER), 1, pNewImage);
-        
-        // Add updated pixel data
-        for (int row = 0; row < imageHeight; row++) {
-            fwrite(image[row], sizeof(RGBTRIPLE), imageWidth, pNewImage);
-            for (int k = 0; k < padding; k++) {
-                fputc(0x00, pNewImage);
-            }
-        }
-        
-        std::cout << "New Image Created\n" << std::endl;
+        updatePixels(imageHeight, imageWidth, padding, pNewImage, image, bmFileHeader, bmInfoHeader);
         
         std::cout << "Closing " << newImageName << std::endl;
         free(image);
@@ -103,26 +120,4 @@ namespace BitmapImages {
         
         std::cout << "Finished Grayscale Process...\n" << std::endl;
     }
-
-    void blurFilter() {
-        std::cout << "\nStarting Blur Process..." << std::endl;
-        
-        // TODO
-    
-        std::cout << "Finished Blur Process...\n" << std::endl;
-    };
-
-    void gaussianFilter() {
-        std::cout << "\nStarting Gaussian Filter Process..." << std::endl;
-    
-        std::cout << "Finished Gaussian Filter Process...\n" << std::endl;
-    }
-
-    void cannyEdgeDetection() {
-        std::cout << "\nStarting Canny Edge Detection Process..." << std::endl;
-    
-        // TODO
-        
-        std::cout << "Finished Canny Edge Detection Process...\n" << std::endl;
-    };
 }
